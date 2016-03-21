@@ -1,0 +1,311 @@
+%%""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+%%												PRESENTATION	
+%% From : Bleunven Angel
+%% Révision par Clément Aubry le 17 décembre 2015
+%% ISEN Brest. SEACom							
+%%""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+%%""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+%%		ENTETE
+%%""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+\documentclass[french,svgnames,10pt]{beamer}
+
+%% Langue ----------------------------------------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[french]{babel}
+
+%% Mathématiques ----------------------------------------------------------------------------------------------
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{bigints}
+\usepackage{eurosym}
+\usefonttheme{professionalfonts}
+\usepackage{empheq}
+\newtheorem{remark}[theorem]{Remarque}
+\newtheorem{Exercice}{Exercice}
+
+%% Graphiques et Figures ---------------------------------------------------------------------
+\usepackage{subfiles}
+\usepackage{graphicx, wrapfig, xcolor}
+\usepackage{fancybox}
+\usepackage{colortbl}
+\usepackage{tabularx}
+\definecolor{bluetitle}{rgb}{0.5,0.5,1}
+\usepackage{caption}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,calc,positioning}
+
+%% Thème -------------------------------------------------------------------------------------
+\usetheme{Frankfurt}
+\usecolortheme{default}
+
+%% Numérotation des pages --------------------------------------------------------------------
+% \addtobeamertemplate{footline}{\hfill\insertframenumber/\inserttotalframenumber}
+\addtobeamertemplate{footline}{\hfill\insertframenumber}
+
+%% Redéfinition de la liste (itemize) --------------------------------------------------------
+\usepackage{ragged2e}
+
+\makeatletter
+\renewcommand{\itemize}[1][]{
+  \beamer@ifempty{#1}{}{\def\beamer@defaultospec{#1}}
+  \ifnum \@itemdepth >2\relax\@toodeep\else
+    \advance\@itemdepth\@ne
+    \beamer@computepref\@itemdepth
+    \usebeamerfont{itemize/enumerate \beameritemnestingprefix body}
+    \usebeamercolor[fg]{itemize/enumerate \beameritemnestingprefix body}
+    \usebeamertemplate{itemize/enumerate \beameritemnestingprefix body begin}
+    \list
+      {\usebeamertemplate{itemize \beameritemnestingprefix item}}
+      {\def\makelabel##1{
+          {
+            \hss\llap{{
+                \usebeamerfont*{itemize \beameritemnestingprefix item}
+                \usebeamercolor[fg]{itemize \beameritemnestingprefix item}##1}}
+          }
+        }
+      }
+  \fi
+  \beamer@cramped
+  \justifying
+  \beamer@firstlineitemizeunskip
+}
+\makeatother
+
+% Nouveau type de bloc -------------------------------------------------------------------
+\newenvironment<>{varblock}[2][\textwidth]{
+    \begin{center}
+      \begin{minipage}{#1}
+        \setlength{\textwidth}{#1}
+          \begin{actionenv}#3
+            \def\insertblocktitle{#2}
+            \par
+            \usebeamertemplate{block begin}}
+  {\par
+      \usebeamertemplate{block end}
+    \end{actionenv}
+  \end{minipage}
+\end{center}}
+
+\setbeamercovered{invisible}
+\setbeamercovered{transparent}
+
+% Charte graphique-------------------------------------------------------------------
+
+% Couleurs ISEN
+\definecolor{redisen}{RGB}{227,6,19}
+\definecolor{grayisen}{RGB}{192,196,208}
+\definecolor{grayisen1}{RGB}{172,176,188}
+\definecolor{grayisen2}{RGB}{92,96,108}
+
+% Couleurs blocs
+\setbeamercolor{title}{fg=white, bg=grayisen1}
+\setbeamercolor{frametitle}{fg = black, bg=white}
+\setbeamercolor{section in head/foot}{fg=black, bg=grayisen1}
+\setbeamercolor{author in head/foot}{fg=white, bg=grayisen1}
+\setbeamercolor{company in head/foot}{fg=white, bg=redisen}
+\setbeamercolor{structure}{bg=white, fg=grayisen} 
+\setbeamercolor{item projected}{bg=redisen}
+
+% Taille header/footer
+\setbeamerfont{footline}{size=\fontsize{7}{7}\selectfont}
+\setbeamerfont{headline}{size=\fontsize{7}{7}\selectfont}
+
+% Taille et fond du titre de chaque diapositive
+\makeatletter
+\setbeamertemplate{frametitle}
+{
+\ifbeamer@plainframe%
+\else
+    \nointerlineskip
+    \begin{beamercolorbox}[sep=0.3cm,ht=3.2em,wd=\paperwidth]{frametitle}
+        \vbox{}\vskip-2ex
+        \strut\insertframesubtitle\strut
+        \hfill
+        \raisebox{-0.8mm}{\includegraphics[width=1.8cm]{Logo_ISEN}}  % Logo en haut à gauche
+        \vskip-0.8ex
+        \strut\small\insertframetitle\strut
+    \end{beamercolorbox}
+\fi
+}
+\makeatother
+\makeatletter
+  \CheckCommand*\beamer@checkframetitle{%
+    \@ifnextchar\bgroup\beamer@inlineframetitle{}}
+  \renewcommand*\beamer@checkframetitle{%
+    \global\let\beamer@frametitle\relax\@ifnextchar%
+    \bgroup\beamer@inlineframetitle{}}
+\makeatother
+
+\addtobeamertemplate{frametitle}{
+  \ifx\insertframetitle\empty
+    \ifx\insertframesubtitle\empty
+      \ifx\insertsubsection\empty 
+        \frametitle{\insertsectionhead}
+      \else
+        \frametitle{\insertsectionhead}\framesubtitle{\insertsubsectionhead}
+      \fi  
+    \else     
+    \fi  
+    \else
+    \fi
+ }{}
+
+% Couleur et puces du sommaire
+\setbeamercolor{section in toc}{fg=grayisen2}
+\setbeamertemplate{sections/subsections in toc}[circle]
+\setbeamercolor{section number projected}{bg=redisen,fg=white}
+
+% Puces des listes
+\setbeamertemplate{itemize item}[circle]
+\setbeamertemplate{itemize subitem}[circle]
+\setbeamertemplate{itemize subsubitem}[circle]
+
+% Couleur des titres de tableaux et figures
+\setbeamercolor{caption name}{fg=grayisen2}
+\setbeamertemplate{caption}[numbered]
+
+%%""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+%%		TITRE                                                                                            %%""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+\title{Écrire en \LaTeX\ pour l'ISEN Brest}
+\author[C.Aubry, Un.Ami]{Cl\'{e}ment Aubry$^{\text{1}}$, Un Ami$^{\text{2}}$}% \and Pr\'{e}nom Nom \and Pr\'{e}nom Nom}
+\institute[]{ISEN Brest$^{\text{1}}$, Autre École$^{\text{2}}$}
+\date{2015-2016}
+
+%%""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+%%		SOMMAIRE automatique à chaque début de section
+%%""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+\AtBeginSection[] {
+	\begin{frame}{Sommaire}
+	\null
+\vspace{-1.6cm}
+  	\tableofcontents[currentsection,currentsubsection,hideothersubsections]    
+  	\end{frame}
+} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definition of blocks:
+\tikzset{%
+  block/.style    = {draw, thick, rectangle, minimum height = 3em,
+    minimum width = 3em},
+    cross/.style={path picture={ 
+  \draw[black]
+(path picture bounding box.south east) -- (path picture bounding box.north west) (path picture bounding box.south west) -- (path picture bounding box.north east);
+}},
+  comparo/.style      = {draw, circle, cross, node distance = 2cm}, % Adder
+  input/.style    = {coordinate}, % Input
+  output/.style   = {coordinate} % Output
+}
+\newdimen\XCoord
+\newdimen\YCoord
+\newcommand*{\ExtractCoordinate}[1]{\path (#1); \pgfgetlastxy{\XCoord}{\YCoord};}%
+\newcommand*{\LabelCurrentCoordinate}[2]{\fill [#1] ($(\XCoord,\YCoord)$) circle (2pt) node [right] {#2}}%
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}%Compatibilit\'e pour pgfplot
+%Pour avoir la grille en dessous des dessins
+\makeatletter \newcommand{\pgfplotsdrawaxis}{\pgfplots@draw@axis} \makeatother
+\pgfplotsset{axis line on top/.style={
+  axis line style=transparent,
+  ticklabel style=transparent,
+  tick style=transparent,
+  axis on top=false,
+  after end axis/.append code={
+    \pgfplotsset{axis line style=opaque,
+      ticklabel style=opaque,
+      tick style=opaque,
+      grid=none}
+    \pgfplotsdrawaxis}
+  }
+}
+%Config pour les axes standard
+\pgfplotsset{
+    standard/.style={
+        axis x line=middle,
+        axis y line=middle,
+        axis on top,
+        enlarge x limits=0.05,
+        enlarge y limits=0.05,
+        every axis x label/.style={at={(current axis.right of origin)},anchor=west,font=\small},
+        every axis y label/.style={at={(current axis.above origin)},anchor=south,font=\small},
+        tick label style={font=\tiny},
+        smooth
+        }
+}
+\newcommand{\intval}[1]{\left[#1\right]}
+\newcommand{\intvalrn}[1]{\left[\mathbf{#1}\right]}
+\newcommand{\tube}[2]{\left[#1\right]\left(#2\right)}
+\newcommand{\tubern}[2]{\left[\mathbf{#1}\right]\left(#2\right)}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Foot notes -------------------------------------------------------------------------------------------
+\setbeamertemplate{footline}{
+  \leavevmode
+    \hbox{\hspace{-0.2cm}
+    \begin{beamercolorbox}[wd=.25\paperwidth,ht=2.25ex,dp=1ex,center]{company in head/foot}%
+      \usebeamerfont{company in head/foot} \insertshortauthor
+    \end{beamercolorbox}
+    
+    \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+        \usebeamerfont{author in head/foot} \inserttitle
+    \end{beamercolorbox}
+    
+    \begin{beamercolorbox}[wd=.25\paperwidth,ht=2.25ex,dp=1ex,right]{company in head/foot}%
+        \usebeamerfont{company in head/foot} www.isen.fr \hspace*{0.5em}
+        \insertframenumber{}{}\hspace*{4ex}
+        % \insertframenumber{}/\inserttotalframenumber{}\hspace*{4ex}
+    \end{beamercolorbox}
+    }
+    \vskip0pt
+}
+
+\pdfpageattr {/Group << /S /Transparency /I true /CS /DeviceRGB>>}
+\def\cestimportant{\begin{center}\includegraphics[height=11pt]{twitter.jpeg}\includegraphics[height=11pt]{fb.jpeg}\emph{\textcolor{redisen}{\#cestimportant}}\end{center}}
+%%"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+%%    DOCUMENT
+%%"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+\graphicspath{{../images/}}
+\begin{document}
+
+%% Page titre
+{\usebackgroundtemplate{
+\includegraphics[width=\paperwidth, height=\paperheight]{bgBeamerISEN.png} }
+\begin{frame}[plain]
+  % \titlepage
+  \vspace*{1cm}
+  \begin{center}
+    \textcolor{grayisen!30!white}{%
+    {\huge{\inserttitle}}\\
+    \insertauthor\\
+    \insertinstitute\\
+    \insertdate}
+  \end{center}
+\end{frame}}
+
+\begin{frame}
+\frametitle{Conventions}
+Les conventions typographiques utilisées dans ce cours (TD compris) sont les suivantes : 
+\begin{align*}
+&x &:&~~\text{valeur scalaire}\\
+&\mathbf{x} &:&~~\text{vecteur colonne}\\
+&\mathbf{x}^T  &:&~~\text{vecteur ligne}\\
+&\mathbf{X} &:&~~\text{matrice}\\
+&\mathbf{X}_{n\times m} &:&~~\text{matrice $(n\times m)$}\\
+&\mathbf{I}_{n} &:&~~\text{matrice identité $(n\times n)$}
+\end{align*}
+\end{frame}
+
+%% Plan
+\begin{frame}
+  \frametitle{Sommaire} 
+  \null
+  \vspace{-1.8cm}
+  \tableofcontents[hideallsubsections]
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subfile{beamerCoursIsenLaTeX_CH1.tex}
+\subfile{beamerCoursIsenLaTeX_CH2.tex}
+\subfile{beamerCoursIsenLaTeX_CH3.tex}
+
+\end{document}

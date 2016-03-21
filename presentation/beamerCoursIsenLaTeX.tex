@@ -1,0 +1,70 @@
+%%""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+%%                        PRESENTATION  
+%% From : Bleunven Angel
+%% Révision par Clément Aubry le 17 décembre 2015
+%% ISEN Brest            
+%%""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+%%""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+%%    ENTETE
+%%""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+\documentclass[french,svgnames,10pt]{beamer}
+\usetheme{CoursIsen}
+%Chemin des images
+\graphicspath{{../images/}}
+
+%%""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+%%    TITRE                                                                                            %%""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+\title{Écrire en \LaTeX\ pour l'ISEN Brest}
+\author[C.Aubry, Un.Ami]{Cl\'{e}ment Aubry$^{\text{1}}$, Un Ami$^{\text{2}}$}% \and Pr\'{e}nom Nom \and Pr\'{e}nom Nom}
+\institute[]{ISEN Brest$^{\text{1}}$, Autre École$^{\text{2}}$}
+\date{2015-2016}
+
+\pdfpageattr {/Group << /S /Transparency /I true /CS /DeviceRGB>>}
+%%"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+%%    DOCUMENT
+%%"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+\begin{document}
+
+%% Page titre
+{\usebackgroundtemplate{
+\includegraphics[width=\paperwidth, height=\paperheight]{bgBeamerISEN.png} }
+\begin{frame}[plain]
+  % \titlepage
+  \vspace*{1cm}
+  \begin{center}
+    \textcolor{grayisen!30!white}{%
+    {\huge{\inserttitle}}\\
+    \insertauthor\\
+    \insertinstitute\\
+    \insertdate}
+  \end{center}
+\end{frame}}
+
+\begin{frame}
+\frametitle{Conventions}
+Les conventions typographiques utilisées dans ce cours (TD compris) sont les suivantes : 
+\begin{align*}
+&x &:&~~\text{valeur scalaire}\\
+&\mathbf{x} &:&~~\text{vecteur colonne}\\
+&\mathbf{x}^T  &:&~~\text{vecteur ligne}\\
+&\mathbf{X} &:&~~\text{matrice}\\
+&\mathbf{X}_{n\times m} &:&~~\text{matrice $(n\times m)$}\\
+&\mathbf{I}_{n} &:&~~\text{matrice identité $(n\times n)$}
+\end{align*}
+\end{frame}
+
+%% Plan
+\begin{frame}
+  \frametitle{Sommaire} 
+  \null
+  \vspace{-1.8cm}
+  \tableofcontents[hideallsubsections]
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subfile{beamerCoursIsenLaTeX_CH1.tex}
+\subfile{beamerCoursIsenLaTeX_CH2.tex}
+\subfile{beamerCoursIsenLaTeX_CH3.tex}
+
+\end{document}
