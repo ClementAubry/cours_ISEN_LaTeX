@@ -1,5 +1,5 @@
 # cours_ISEN_LaTeX
-
+alut
 Package exemple pour créer un cours en LaTeX formaté pour l'ISEN Brest
 
 ## Procédure pour une utilisation "out-of-the-box"
