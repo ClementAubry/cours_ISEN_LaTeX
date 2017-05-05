@@ -1,69 +1,30 @@
 \documentclass[11pt, a4paper,notitlepage]{article}
-
-\usepackage{subfiles}
-\usepackage[french]{babel}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{amssymb,amsmath,amsfonts,amsthm}%Maths
-\usepackage{empheq}
-\usepackage{pdfpages}
-\usepackage[top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
-\usepackage{fancyhdr}
-\usepackage{textcomp}
-\usepackage{etoolbox}
-\usepackage{xcolor}
-\usepackage{url}
-\usepackage{placeins}
-\usepackage{lastpage}
-\usepackage{tikz}
-\usetikzlibrary{shapes,arrows}
-\usepackage[european,cuteinductors]{circuitikz}
-\definecolor{almond}{rgb}{0.94, 0.87, 0.8}
-\definecolor{redisen}{RGB}{227,6,19}
-\definecolor{grayisen}{RGB}{192,196,208}
-% \definecolor{grayisen1}{RGB}{172,176,188}
-\definecolor{grayisen1}{RGB}{92,96,108}
-\usepackage{listings}
-\lstset{frame=single,backgroundcolor=\color{grayisen!10},breaklines=true}
-
-\lstdefinestyle{Bash}
-{language=bash,
-keywordstyle=\bf\color{black},
-basicstyle=\ttfamily,
-morekeywords={username@hostname},
-alsoletter={\$:~},
-morekeywords=[2]{username@hostname:},
-keywordstyle=[2]{\color{black}},
-literate={\$}{{\textcolor{black}{\$}}}1 
-         {:}{{\textcolor{black}{:}}}1
-         {~}{{\textcolor{black}{{\raise.17ex\hbox{$\scriptstyle\sim$}}}}}1,
-% comment=[l]{#},
-% commentstyle=\color{gray}\ttfamily,
-% stringstyle=\color{gray}\ttfamily,
-}
-\lstdefinestyle{cmakelist}
-{language=bash,
-keywordstyle=\bf\color{black},
-basicstyle=\footnotesize \ttfamily,
-morekeywords={username@hostname},
-alsoletter={\$:~\#},
-morekeywords=[2]{username@hostname:},
-keywordstyle=[2]{\color{black}},
-literate={\$}{{\textcolor{black}{\$}}}1 
-         {:}{{\textcolor{black}{:}}}1
-         {\#}{{\textcolor{black}{\#}}}1
-         {~}{{\textcolor{black}{{\raise.17ex\hbox{$\scriptstyle\sim$}}}}}1,
-}
-
+\input{preambleTD.tex}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%% PARTIE A RENSEIGNER %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanswers
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \answerstrue % comment out to hide answers
-\newcommand{\ladate}{2015-2016}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\SetWatermarkText{}
+\ifanswers
+\SetWatermarkText{CORRECTION}
+\SetWatermarkScale{3}
+\SetWatermarkColor{gray!30}
+\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\ladate}{2016-2017}
+\newcommand{\ecole}{ISEN Brest}
+\newcommand{\laclasse}{M1 Tronc Commun}
 \def\shorttitle{TD1 - Exemple de TD}
 \def\longtitle{\LaTeX pour l'ISEN}
 \title{\longtitle\\\shorttitle}
@@ -77,76 +38,24 @@ clement.aubry@isen-bretagne.fr\\Bureau 202}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\newcommand{\headrulecolor}[1]{\patchcmd{\headrule}{\hrule}{\color{#1}\hrule}{}{}}
-\newcommand{\footrulecolor}[1]{\patchcmd{\footrule}{\hrule}{\color{#1}\hrule}{}{}}
-\renewcommand{\headrulewidth}{1pt}
-\renewcommand{\footrulewidth}{1pt}
-\headrulecolor{redisen}
-\footrulecolor{redisen}
-
-
-\pagestyle{fancy}
-% pour le haut de page
-\lhead{\textcolor{grayisen1}{\longtitle}}
-\chead{}
-\makeatletter
-\rhead{\textcolor{grayisen1}{\shorttitle}}
-\makeatother
-% pour le pied de page
-\cfoot{\textcolor{grayisen1}{Page \thepage/\pageref{LastPage}}}
-\lfoot{\textcolor{grayisen1}{M1 Tronc Commun}}
-\rfoot{\textcolor{grayisen1}{ISEN Brest}}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newtheorem{theoreme}{Th\'eor\`eme}[section]
-\newtheorem{lemme}{Lemme}[section]
-\newtheorem{corollaire}{Corollaire}[section]
-\newtheorem{exemple}{Exemple}[section]
-\newtheorem{Def}{D\'efinition}[section]
-\newtheorem{remarque}{Remarque}[section]
-\newtheorem{Exercice}{Exercice}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\def\separateur{\FloatBarrier\begin{center}\textcolor{redisen}{\rule{0.7\linewidth}{1pt}}\end{center}\FloatBarrier}
-
-\graphicspath{{../images/}}
 \begin{document}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Definition of blocks:
-\tikzset{%
-  block/.style    = {draw, thick, rectangle, minimum height = 3em,
-    minimum width = 3em},
-  sum/.style      = {draw, circle, node distance = 2cm}, % Adder
-  input/.style    = {coordinate}, % Input
-  output/.style   = {coordinate} % Output
-}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\makeatletter
-\begin{figure}[!ht]
-  \begin{minipage}{6cm}
-    \hspace{1cm}
-    \includegraphics[width=6cm]{/home/clement/Images/logoISEN.jpg}
-    % \vspace{0.5cm}
-    \begin{center}\hspace{1.5cm}\textcolor{grayisen1}{Année \ladate}\end{center}
-  \end{minipage}%
-  \hspace{2cm}
-\begin{minipage}{6cm}\begin{center}\textcolor{grayisen1}{
-  \@author\\
-  \vspace{0.5cm}
-  Intervenant TD : \intervenantTD}
-\end{center}\end{minipage}
-\end{figure}
-\vspace{-0.5cm}
-\begin{center}\textcolor{redisen}{\rule{\linewidth}{1pt}}\end{center}\FloatBarrier
-\begin{center}\huge{\textcolor{grayisen1}{\linespread{1.5}\@title}}\par\end{center}
-\makeatother
-\begin{center}\textcolor{redisen}{\rule{\linewidth}{1pt}}\end{center}\FloatBarrier
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makeMyTitle
+
 
 \subfile{../exercices/CH1/CoursIsenLaTeX_CH1_exo01.tex}
 \ifanswers\textcolor{blue}{\subfile{../corrections/CH1/CoursIsenLaTeX_CH1_exo01_correction.tex}}\fi
 \separateur
 \subfile{../exercices/CH2/CoursIsenLaTeX_CH2_exo01.tex}
 \ifanswers\textcolor{blue}{\subfile{../corrections/CH2/CoursIsenLaTeX_CH2_exo01_correction.tex}}\fi
+\separateur
+
+%%Pour mettre une biblio à la main si besoin
+% \begin{thebibliography}{2}
+%  \bibitem{Baccelli92}%Pour exo 21 book, réseau Petri
+%  F. Baccelli and G. Cohen and G.J. Olsder and J.P. Quadrat,
+%  \emph{Synchronization and Linearity. An Algebra for Discrete Event Systems},
+%  John Wiley \& Sons, New York,
+%  1992.
+% \end{thebibliography}
 
 \end{document}

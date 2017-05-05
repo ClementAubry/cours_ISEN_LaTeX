@@ -1,0 +1,156 @@
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{subfiles}
+\usepackage{amssymb,amsmath,amsfonts,amsthm}%Maths
+\usepackage{empheq}
+\usepackage{bigints}
+\usepackage{pdfpages}
+\usepackage[top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{textcomp}
+\usepackage{etoolbox}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{placeins}
+\usepackage{lastpage}
+\usepackage{tikz}
+\usepackage{draftwatermark}
+\usetikzlibrary{intersections,shapes,arrows,calc,positioning,patterns,decorations.pathmorphing,decorations.markings,matrix,snakes}
+\usepackage[european,cuteinductors]{circuitikz}
+\definecolor{almond}{rgb}{0.94, 0.87, 0.8}
+\definecolor{redisen}{RGB}{227,6,19}
+\definecolor{grayisen}{RGB}{192,196,208}
+% \definecolor{grayisen1}{RGB}{172,176,188}
+\definecolor{grayisen1}{RGB}{92,96,108}
+\usepackage{listings}
+\lstset{frame=single,backgroundcolor=\color{grayisen!10},breaklines=true}
+
+
+
+\lstdefinestyle{Bash}
+{language=bash,
+ keywordstyle=\bf\color{black},
+ basicstyle=\ttfamily,
+ morekeywords={username@hostname},
+ alsoletter={\$:~},
+ morekeywords=[2]{username@hostname:},
+ keywordstyle=[2]{\color{black}},
+ literate={\$}{{\textcolor{black}{\$}}}1
+ {:}{{\textcolor{black}{:}}}1
+ {~}{{\textcolor{black}{{\raise.17ex\hbox{$\scriptstyle\sim$}}}}}1,
+ % comment=[l]{#},
+ % commentstyle=\color{gray}\ttfamily,
+ % stringstyle=\color{gray}\ttfamily,
+}
+\lstdefinestyle{cmakelist}
+{language=bash,
+ keywordstyle=\bf\color{black},
+ basicstyle=\footnotesize \ttfamily,
+ morekeywords={username@hostname},
+ alsoletter={\$:~\#},
+ morekeywords=[2]{username@hostname:},
+ keywordstyle=[2]{\color{black}},
+ literate={\$}{{\textcolor{black}{\$}}}1
+ {:}{{\textcolor{black}{:}}}1
+ {\#}{{\textcolor{black}{\#}}}1
+ {~}{{\textcolor{black}{{\raise.17ex\hbox{$\scriptstyle\sim$}}}}}1,
+}
+
+
+\newcommand{\headrulecolor}[1]{\patchcmd{\headrule}{\hrule}{\color{#1}\hrule}{}{}}
+\newcommand{\footrulecolor}[1]{\patchcmd{\footrule}{\hrule}{\color{#1}\hrule}{}{}}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{1pt}
+\headrulecolor{redisen}
+\footrulecolor{redisen}
+
+
+\pagestyle{fancy}
+% pour le haut de page
+\lhead{\textcolor{grayisen1}{\longtitle}}
+\chead{}
+\makeatletter
+\rhead{\textcolor{grayisen1}{\shorttitle}}
+\makeatother
+% pour le pied de page
+\cfoot{\textcolor{grayisen1}{Page \thepage/\pageref{LastPage}}}
+\lfoot{\textcolor{grayisen1}{\laclasse}}
+\rfoot{\textcolor{grayisen1}{\ecole}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtheorem{theoreme}{Th\'eor\`eme}[section]
+\newtheorem{lemme}{Lemme}[section]
+\newtheorem{corollaire}{Corollaire}[section]
+\newtheorem{exemple}{Exemple}[section]
+\newtheorem{Def}{D\'efinition}[section]
+\newtheorem{remarque}{Remarque}[section]
+\newtheorem{Exercice}{Exercice}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\separateur{\FloatBarrier\begin{center}\textcolor{redisen}{\rule{0.7\linewidth}{1pt}}\end{center}\FloatBarrier}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definition of blocks:
+\tikzset{%
+ block/.style    = {draw, thick, rectangle, minimum height = 3em,
+  minimum width = 3em},
+ cross/.style={path picture={
+  \draw[black]
+  (path picture bounding box.south east) -- (path picture bounding box.north west) (path picture bounding box.south west) -- (path picture bounding box.north east);
+ }},
+ sum/.style      = {draw, circle, node distance = 2cm}, % Adder
+ input/.style    = {coordinate}, % Input
+ output/.style   = {coordinate}, % Output
+ comparo/.style      = {draw, circle, cross, node distance = 2cm} % Adder
+}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % Definition of blocks:
+% \tikzset{%
+% 	block/.style    = {draw, thick, rectangle, minimum height = 3em,
+% 		minimum width = 3em},
+% 	cross/.style={path picture={
+% 		\draw[black]
+% 		(path picture bounding box.south east) -- (path picture bounding box.north west) (path picture bounding box.south west) -- (path picture bounding box.north east);
+% 	}},
+% 	comparo/.style      = {draw, circle, cross, node distance = 2cm}, % Adder
+% 	input/.style    = {coordinate}, % Input
+% 	output/.style   = {coordinate} % Output
+% }
+
+
+\graphicspath{{../images/}}
+\makeatletter
+\def\myauthor{\@author}
+\def\mytitle{\@title}
+\makeatother
+\newcommand\makeMyTitle{%\ladate
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \begin{figure}[!ht]
+  \vspace{-0.5cm}
+  \begin{minipage}{6cm}
+   \hspace{1cm}
+   \includegraphics[width=6cm]{/ISEN-Brest_horizontal.jpg}
+   % \vspace{0.5cm}
+   \begin{center}\hspace{1.5cm}\textcolor{grayisen1}{Année \ladate}\end{center}
+  \end{minipage}%
+  \hspace{2cm}
+  \begin{minipage}{6cm}\begin{center}\textcolor{grayisen1}{
+    \myauthor\\
+    \ifx\intervenantTD\undefined
+     %% Do this if it is undefined
+    \else
+     %% Do this if it is defined
+     \vspace{0.25cm}
+     Intervenant TD : \intervenantTD
+    \fi
+   }
+   \end{center}
+  \end{minipage}
+ \end{figure}
+ \vspace{-1cm}
+ \begin{center}\textcolor{redisen}{\rule{\linewidth}{1pt}}\end{center}\FloatBarrier
+ \begin{center}\huge{\vspace{-0.5cm}\textcolor{grayisen1}{\linespread{1.5}\mytitle}\vspace{-0.5cm}}\par\end{center}
+ \begin{center}\textcolor{redisen}{\rule{\linewidth}{1pt}}\end{center}\FloatBarrier
+}
+% \makeatother

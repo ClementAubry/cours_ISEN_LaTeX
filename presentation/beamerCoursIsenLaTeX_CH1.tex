@@ -8,93 +8,83 @@
 \subsection{\LaTeX}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\begin{itemize}
-\item Pour bien travailler.
-\item Il faut les bons outils.
-\item La dernière version de \LaTeX convient tout à fait.
-\end{itemize}
-\begin{figure}
-\begin{center}
-\begin{tikzpicture}[auto, thick, node distance=2cm]
-  \draw (-3,-1.5)rectangle(4,1);
-  % Dessin des blocs
-  \node at (-4,0.2) (cmd) {$\mathbf{w}(t)$};
-  \draw[black] node at (-1,0)[block] (regul) {Régulateur};
-  \draw[black] node at (2,0)[block] (system) {Système};
-  \draw node at (5,0) (out) {$\mathbf{y}(t)$};
-  % Joining blocks.
-  \draw[->,black](cmd.east) -- ([yshift=0.2cm]regul.west);
-  \draw[->,black](regul.east) -- (system.west) node at ($(regul.east)!0.5!(system.west)$)[above]{$\mathbf{u}(t)$};
-  \draw[->,black](system.east) -- (out);
-  \draw[->,black](3,0)--(3,-1)--(-2.5,-1)--(-2.5,-0.2)--([yshift=-0.2cm]regul.west);
-\end{tikzpicture}
-\caption{Exemple de dessin en Tikz.}
-\end{center}
-\end{figure}
+ \begin{itemize}
+  \item Pour bien travailler.
+  \item Il faut les bons outils.
+  \item La dernière version de \LaTeX convient tout à fait.
+ \end{itemize}
+ \begin{figure}
+  \begin{center}
+   \begin{tikzpicture}[auto, thick, node distance=2cm]
+    \draw (-3,-1.5)rectangle(4,1);
+    % Dessin des blocs
+    \node at (-4,0.2) (cmd) {$\mathbf{w}(t)$};
+    \draw[black] node at (-1,0)[block] (regul) {Régulateur};
+    \draw[black] node at (2,0)[block] (system) {Système};
+    \draw node at (5,0) (out) {$\mathbf{y}(t)$};
+    % Joining blocks.
+    \draw[->,black](cmd.east) -- ([yshift=0.2cm]regul.west);
+    \draw[->,black](regul.east) -- (system.west) node at ($(regul.east)!0.5!(system.west)$)[above]{$\mathbf{u}(t)$};
+    \draw[->,black](system.east) -- (out);
+    \draw[->,black](3,0)--(3,-1)--(-2.5,-1)--(-2.5,-0.2)--([yshift=-0.2cm]regul.west);
+   \end{tikzpicture}
+   \caption{Exemple de dessin en Tikz.}
+  \end{center}
+ \end{figure}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{TexLive 2015}
+\subsection{TexLive à jour}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\begin{itemize}
-\item La version 2015 de TeXLive est fortement recommandée.
-\item \url{https://www.tug.org/texlive/}
-\end{itemize}
-  \begin{block}{Définition : Système [Larousse]}
-    \begin{itemize}
-      \item Appareillage, dispositif formé de divers éléments et assurant une fonction déterminée
-    \end{itemize}
-  \end{block}
-  \null
-\begin{columns}
-\begin{column}{5cm}
-Domaines d'application : 
-\begin{itemize}
-\itemsep1pt
-\item électronique
-\item mécanique
-\item biologique
-\end{itemize}
-\end{column}
-\begin{column}{6cm}
-\begin{figure}[!ht]
-\begin{center}
-\begin{tikzpicture}[auto, thick, node distance=2cm, >=triangle 45]
-  % Dessin blocs
-  \node at (-2,0) (in) {entrées};
-  \draw[black] node at (0,0)[block] (system) {Système};
-  \draw node at (2,0) (out) {sorties};
-  % Joining blocks.
-  \draw[->,black](in) -- (system.west);
-  \draw[->,black](system.east) -- (out);
-\end{tikzpicture}
-\end{center}
-\caption{Un système}
-\end{figure}
-\end{column}
-\end{columns}
+ \begin{itemize}
+  \item La dernière version de TeXLive est fortement recommandée.
+  \item Elle est installé par défaut pour les outils atex sous windows (pas sous linux)
+  \item \url{https://www.tug.org/texlive/}
+ \end{itemize}
+ \begin{block}{Définition : Système [Larousse]}
+  \begin{itemize}
+   \item Appareillage, dispositif formé de divers éléments et assurant une fonction déterminée
+  \end{itemize}
+ \end{block}
+ \null
+ \begin{columns}
+  \begin{column}{5cm}
+   Domaines d'application :
+   \begin{itemize}
+    \itemsep1pt
+    \item électronique
+    \item mécanique
+    \item biologique
+   \end{itemize}
+  \end{column}
+  \begin{column}{6cm}
+   \begin{figure}[!ht]
+    \begin{center}
+     \begin{tikzpicture}[auto, thick, node distance=2cm, >=triangle 45]
+      % Dessin blocs
+      \node at (-2,0) (in) {entrées};
+      \draw[black] node at (0,0)[block] (system) {Système};
+      \draw node at (2,0) (out) {sorties};
+      % Joining blocks.
+      \draw[->,black](in) -- (system.west);
+      \draw[->,black](system.east) -- (out);
+     \end{tikzpicture}
+    \end{center}
+    \caption{Un système}
+   \end{figure}
+  \end{column}
+ \end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Un bon éditeur de texte}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\begin{itemize}
-\item Personellement j'utilise Sublime Text 3
-\item \url{https://www.sublimetext.com/3}
-\item Avec le plugin LatexTools
-\end{itemize}
-\cestimportant
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{La compilation}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\center Tout se fait à base de Makefile.\\Attention, ceux distribués sont faits sous Ubuntu\\
-\begin{itemize}
-\item Pour la présentation : \texttt{make all}
-\item Pour les TD : \texttt{make TEX=<nomDuFichierTDSansExtension> all}
-\end{itemize}
-
+ \begin{itemize}
+  \item Personellement j'utilise Atom
+  \item \url{https://atom.io}
+  \item Avec le plugin latex
+ \end{itemize}
+ \cestimportant
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}

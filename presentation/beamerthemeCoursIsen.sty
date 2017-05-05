@@ -6,7 +6,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage[french]{babel}
-%% Mathématiques 
+%% Mathématiques
 \usepackage{amsmath, amssymb, amsfonts}
 \usepackage{bigints}
 \usepackage{eurosym}
@@ -52,7 +52,7 @@
 \setbeamercolor{section in head/foot}{fg=black, bg=grayisen1}
 \setbeamercolor{author in head/foot}{fg=white, bg=grayisen1}
 \setbeamercolor{company in head/foot}{fg=white, bg=redisen}
-\setbeamercolor{structure}{bg=white, fg=grayisen} 
+\setbeamercolor{structure}{bg=white, fg=grayisen}
 \setbeamercolor{item projected}{bg=redisen}
 % Taille header/footer
 \setbeamerfont{footline}{size=\fontsize{7}{7}\selectfont}
@@ -100,15 +100,18 @@
 {
 \ifbeamer@plainframe%
 \else
-    \nointerlineskip
-    \begin{beamercolorbox}[sep=0.3cm,ht=3.2em,wd=\paperwidth]{frametitle}
-        \vbox{}\vskip-2ex
-        \strut\insertframesubtitle\strut
-        \hfill
-        \raisebox{-0.8mm}{\includegraphics[width=1.8cm]{Logo_ISEN}}  % Logo en haut à gauche
-        \vskip-0.8ex
-        \strut\small\insertframetitle\strut
-    \end{beamercolorbox}
+\nointerlineskip
+\begin{beamercolorbox}[sep=0.3cm,ht=3.2em,wd=\paperwidth]{frametitle}
+    \vbox{}
+    \vskip-2ex
+    \strut\insertframetitle\strut
+    \hfill
+    \begin{tikzpicture}[remember picture,overlay]
+        \node[xshift=-1.1cm,yshift=-1.2cm] at (current page.north east) {\includegraphics[width=2cm]{ISEN-Brest_horizontal.jpg}};
+    \end{tikzpicture}
+    \vskip-0.8ex
+    \strut\small\insertframesubtitle\strut
+\end{beamercolorbox}
 \fi
 }
 \makeatother
@@ -123,13 +126,13 @@
 \addtobeamertemplate{frametitle}{
   \ifx\insertframetitle\empty
     \ifx\insertframesubtitle\empty
-      \ifx\insertsubsection\empty 
+      \ifx\insertsubsection\empty
         \frametitle{\insertsectionhead}
       \else
         \frametitle{\insertsectionhead}\framesubtitle{\insertsubsectionhead}
-      \fi  
-    \else     
-    \fi  
+      \fi
+    \else
+    \fi
     \else
     \fi
  }{}
@@ -138,7 +141,7 @@
   \begin{frame}{Sommaire}
   \null
 \vspace{-1.6cm}
-    \tableofcontents[currentsection,currentsubsection,hideothersubsections]    
+    \tableofcontents[currentsection,currentsubsection,hideothersubsections]
     \end{frame}
 }
 %% Foot notes
@@ -148,11 +151,11 @@
     \begin{beamercolorbox}[wd=.25\paperwidth,ht=2.25ex,dp=1ex,center]{company in head/foot}%
       \usebeamerfont{company in head/foot} \insertshortauthor
     \end{beamercolorbox}
-    
+
     \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
         \usebeamerfont{author in head/foot} \inserttitle
     \end{beamercolorbox}
-    
+
     \begin{beamercolorbox}[wd=.25\paperwidth,ht=2.25ex,dp=1ex,right]{company in head/foot}%
         \usebeamerfont{company in head/foot} www.isen.fr \hspace*{0.5em}
         \insertframenumber{}{}\hspace*{4ex}
@@ -167,7 +170,7 @@
 \tikzset{%
   block/.style    = {draw, thick, rectangle, minimum height = 3em,
     minimum width = 3em},
-    cross/.style={path picture={ 
+    cross/.style={path picture={
   \draw[black]
 (path picture bounding box.south east) -- (path picture bounding box.north west) (path picture bounding box.south west) -- (path picture bounding box.north east);
 }},
