@@ -12,7 +12,7 @@
 \usetheme{CoursIsen}
 %Chemin des images
 \graphicspath{{../images/}}
-
+\beamertemplatenavigationsymbolsempty
 %%""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 %%    TITRE                                                                                            %%""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 \title{Écrire en \LaTeX\ pour l'ISEN Brest}
@@ -24,22 +24,52 @@
 %%"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 %%    DOCUMENT
 %%"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-\begin{document}
+\setbeamertemplate{title page}[myspecial][colsep=-4bp,rounded=true,shadow=false]
 
-%% Page titre
-{\usebackgroundtemplate{
- \includegraphics[width=\paperwidth, height=\paperheight]{bg_beamer_ISEN.png} }
- \begin{frame}[plain]
-  % \titlepage
-  \vspace*{1cm}
-  \begin{center}
-   \textcolor{grayisen!30!white}{%
-    {\huge{\inserttitle}}\\
-    \insertauthor\\
-    \insertinstitute\\
-    \insertdate}
-  \end{center}
- \end{frame}}
+\begin{document}
+\begin{frame}[plain,b]
+ \titlepage
+\end{frame}
+% %% Page titre
+% {%\usebackgroundtemplate{\includegraphics[width=\paperwidth, height=\paperheight]{bg_beamer_ISEN_square.png}}
+%  \begin{frame}[plain]
+%   \begin{tikzpicture}[remember picture,overlay]
+%    \node[xshift=-1.1cm,yshift=-1.2cm] at (current page.north east) {\includegraphics[width=2cm]{ISEN-Brest_horizontal.jpg}};
+%   \end{tikzpicture}
+%   % \titlepage
+%   \vspace*{1cm}
+%   \begin{center}
+%    % \textcolor{grayisen!30!white}{%
+%    \textcolor{black!30!grayisen}{%
+%     {\huge{\inserttitle}}\\
+%     \insertauthor\\
+%     \insertinstitute\\
+%     \insertdate}
+%   \end{center}
+%
+%   \vfill
+%   \leavevmode\footnotesize%\tiny%
+% \hbox{
+%  % \hspace{-0.2cm}
+%  \hspace{-1.3cm}
+%  \begin{beamercolorbox}[wd=.25\paperwidth,ht=2.25ex,dp=1ex,center]{company in head/foot}%
+%   \usebeamerfont{company in head/foot} \insertshortauthor
+%  \end{beamercolorbox}
+%
+%  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+%   \usebeamerfont{author in head/foot} \inserttitle
+%  \end{beamercolorbox}
+%
+%  \begin{beamercolorbox}[wd=.25\paperwidth,ht=2.25ex,dp=1ex,right]{company in head/foot}%
+%   \usebeamerfont{company in head/foot} www.isen.fr \hspace*{0.5em}
+%
+%   % \insertframenumber{}{}\hspace*{4ex}
+%   % \insertframenumber{}/\inserttotalframenumber{}\hspace*{4ex}
+%  \end{beamercolorbox}
+% }
+% \vskip0pt
+
+% \end{frame}}
 
 \begin{frame}
  \frametitle{Conventions}

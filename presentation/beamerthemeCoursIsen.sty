@@ -48,6 +48,7 @@
 \def\setbeamercovered{transparent}
 % Couleurs blocs
 \setbeamercolor{title}{fg=white, bg=grayisen1}
+\setbeamercolor{redisenBeamerColor}{fg=white, bg=redisen}
 \setbeamercolor{frametitle}{fg = black, bg=white}
 \setbeamercolor{section in head/foot}{fg=black, bg=grayisen1}
 \setbeamercolor{author in head/foot}{fg=white, bg=grayisen1}
@@ -94,11 +95,88 @@
   \beamer@firstlineitemizeunskip
 }
 \makeatother
+
+\defbeamertemplate*{title page}{myspecial}[1][]
+{
+    \vbox{}
+    \vfill
+    \begingroup
+    \centering
+    \begin{beamercolorbox}[sep=8pt,center,#1]{redisenBeamerColor}
+        \usebeamerfont{title}\inserttitle\par%
+        \ifx\insertsubtitle\@empty%
+        \else%
+        \vskip0.25em%
+        {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+        \fi%
+    \end{beamercolorbox}%
+    \vskip1em\par
+    \begin{beamercolorbox}[sep=8pt,center,#1]{author}
+        \usebeamerfont{author}\insertauthor
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[sep=8pt,center,#1]{institute}
+        \usebeamerfont{institute}\insertinstitute
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[sep=8pt,center,#1]{date}
+        \usebeamerfont{date}\insertdate
+    \end{beamercolorbox}\vskip0.5em
+    {\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic\par}
+    \endgroup
+    \vfill
+    %%%%%%%%%% added footline from split
+    \leavevmode%
+    \scriptsize%\tiny%
+    \hbox{
+     % \hspace{-0.2cm}
+     \hspace{-1.3cm}
+     \begin{beamercolorbox}[wd=.25\paperwidth,ht=2.25ex,dp=1ex,center]{company in head/foot}%
+      \usebeamerfont{company in head/foot} \insertshortauthor
+     \end{beamercolorbox}
+
+     \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+      \usebeamerfont{author in head/foot} \null%\inserttitle
+     \end{beamercolorbox}
+
+     \begin{beamercolorbox}[wd=.25\paperwidth,ht=2.25ex,dp=1ex,left]{company in head/foot}%
+      \usebeamerfont{company in head/foot} \hspace*{2.75em}www.isen.fr \hspace*{0.5em}
+
+      % \insertframenumber{}{}\hspace*{4ex}
+      % \insertframenumber{}/\inserttotalframenumber{}\hspace*{4ex}
+     \end{beamercolorbox}
+    }
+    \vskip0pt%
+}
+
+
 % Taille et fond du titre de chaque diapositive
 \makeatletter
 \setbeamertemplate{frametitle}
 {
+% \begin{tikzpicture}[remember picture,overlay]
+%     \node[xshift=-1.1cm,yshift=-4.2cm] at (current page.north east) {Salut};
+%     % \draw[xshift=-1.1cm,yshift=-4.2cm,red,very thick] (current page.north east) --++ (-1,0);
+% \end{tikzpicture}
 \ifbeamer@plainframe%
+    \vskip-5pt
+\begin{beamercolorbox}[wd=\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+\end{beamercolorbox}
+    \begin{tikzpicture}[remember picture,overlay]
+        \node[xshift=-1.1cm,yshift=-1.2cm] at (current page.north east) {\includegraphics[width=2cm]{ISEN-Brest_horizontal.jpg}};
+
+% \node[minimum width=\paperwidth, minimum height=\paperheight] (current page.north west) {};
+% \draw [very thick] (current page.north west) -- (current page.south east)--(current page.north east)--(current page.north west) -- (current page.south west)--(current page.north east);
+% \draw [red,very thick] (current page.north east) -- ++(-0.6,0) -- ($(current page.south east)+(-0.6,0)$)-- (current page.south east);
+\draw [redisen!80!black,thin] ($(current page.north east)+(0,-2.95)$) --++(-0.6,0.65);
+\draw [redisen!80!black,thin] ($(current page.north east)+(0,-3.7)$) --++(-0.6,0.65);
+\draw [redisen!80!black,thin] ($(current page.north east)+(0,-4.45)$) --++(-0.6,0.65);
+\draw [redisen!80!black,thin] ($(current page.north east)+(0,-5.2)$) --++(-0.6,0.65);
+\draw [redisen!80!black,thin] ($(current page.north east)+(0,-5.95)$) --++(-0.6,0.65);
+\draw [redisen!80!black,thin] ($(current page.north east)+(0,-6.7)$) --++(-0.6,0.65);
+\draw [redisen!80!black,thin] ($(current page.north east)+(0,-7.45)$) --++(-0.6,0.65);
+\draw [redisen!80!black,thin] ($(current page.north east)+(0,-8.2)$) --++(-0.6,0.65);
+
+
+    \end{tikzpicture}
 \else
 \nointerlineskip
 \begin{beamercolorbox}[sep=0.3cm,ht=3.2em,wd=\paperwidth]{frametitle}
@@ -108,6 +186,14 @@
     \hfill
     \begin{tikzpicture}[remember picture,overlay]
         \node[xshift=-1.1cm,yshift=-1.2cm] at (current page.north east) {\includegraphics[width=2cm]{ISEN-Brest_horizontal.jpg}};
+        \draw [redisen!80!black,thin] ($(current page.north east)+(0,-2.95)$) --++(-0.6,0.65);
+        \draw [redisen!80!black,thin] ($(current page.north east)+(0,-3.7)$) --++(-0.6,0.65);
+        \draw [redisen!80!black,thin] ($(current page.north east)+(0,-4.45)$) --++(-0.6,0.65);
+        \draw [redisen!80!black,thin] ($(current page.north east)+(0,-5.2)$) --++(-0.6,0.65);
+        \draw [redisen!80!black,thin] ($(current page.north east)+(0,-5.95)$) --++(-0.6,0.65);
+        \draw [redisen!80!black,thin] ($(current page.north east)+(0,-6.7)$) --++(-0.6,0.65);
+        \draw [redisen!80!black,thin] ($(current page.north east)+(0,-7.45)$) --++(-0.6,0.65);
+        \draw [redisen!80!black,thin] ($(current page.north east)+(0,-8.2)$) --++(-0.6,0.65);
     \end{tikzpicture}
     \vskip-0.8ex
     \strut\small\insertframesubtitle\strut
@@ -156,8 +242,8 @@
         \usebeamerfont{author in head/foot} \inserttitle
     \end{beamercolorbox}
 
-    \begin{beamercolorbox}[wd=.25\paperwidth,ht=2.25ex,dp=1ex,right]{company in head/foot}%
-        \usebeamerfont{company in head/foot} www.isen.fr \hspace*{0.5em}
+    \begin{beamercolorbox}[wd=.25\paperwidth,ht=2.25ex,dp=1ex,left]{company in head/foot}%
+        \usebeamerfont{company in head/foot}  \hspace*{2.75em}www.isen.fr \hspace*{0.5em}
         \insertframenumber{}{}\hspace*{4ex}
         % \insertframenumber{}/\inserttotalframenumber{}\hspace*{4ex}
     \end{beamercolorbox}
